@@ -40,7 +40,7 @@ $ div E = 0 \
 $
 
 #set align(start)
-Das Problem erscheint, weil hier die Lichtgeschwindigkeit $c$ als eine Konstante betrachtet wird ($c=1/(sqrt(mu_0 epsilon_0))$) was die Physiker damals verwirrt hat, weil die Theorie von Galileo, die klassische Mechanik davon überzeugt war, dass beispielsweise die Geschwindigkeit eines Balles relativ zu einem Bezugsystem $x'$ und $y'$ bei $v-v'$ liegt, was aber bei einer Konstante nicht möglich ist. Außerdem ist sich die klassische Mechanik ziemlich sicher, dass eine absolute Geschwindigkeit nicht existiert, also muss es ein Weg geben, $v-v'$ im Bezug auf die Lichtgeschwindigkeit auszudrücken. Die Physiker des 20ten Jahrhunderts haben nach verschiedenen Lösungen wie Ether gesucht. Schlussendlich kamen sie auf die Relativitätstheorie, mit der sich dieses Paper beschäftigt.
+Das Problem erscheint, weil hier die Lichtgeschwindigkeit $c$ als eine Konstante betrachtet wird ($c=1/(sqrt(mu_0 epsilon_0))$) was die Physiker damals verwirrt hat, weil die Theorie von Galileo, die klassische Mechanik davon überzeugt war, dass beispielsweise die Geschwindigkeit eines Balles relativ zu einem Bezugsystem $x'$ und $y'$ bei $v-v'$ liegt, was aber bei einer Konstante nicht möglich ist. Außerdem ist sich die klassische Mechanik ziemlich sicher, dass eine absolute Geschwindigkeit nicht existiert, also muss es ein Weg geben, $v-v'$ im Bezug auf die Lichtgeschwindigkeit auszudrücken. Die Physiker des 20ten Jahrhunderts haben nach verschiedenen Lösungen wie Ether gesucht. Schlussendlich kamen sie auf die Relativitätstheorie, mit der sich dieser Paper beschäftigt.
 
 == Galileo's Transformationen
 Einstein war der erste Physiker, der nicht den Elektromagnetismus in Frage stellte, sondern die klassische Mechanik. Galileo fand raus, dass Zeit absolut ist ($t=t'$). Die $x'$ Koordinate ist $x'=x-v' t$. Wenn wir jetzt die Ableitung nehmen: $dv(x',t)=dot(x')=dot(x) - v'$ wobei $dot(x')$ ist die Geschwindigkeit des Balles die aus dem Bezugsystem $x'$ und $y'$ gemessen wird. Wie später im Detail besprochen wird, hat Einstein valide Argumente geformt, die auf ein Fehler in diesen Transformationen angedeutet haben.
@@ -285,3 +285,114 @@ Jetzt können wir die Beiden subtrahieren und bekommen:
   )
 
 Weil der Lorentzfaktor $<1$ ist, ist $l' > l$.
+
+Bei der Zeitdilatation nehmen wir eine stehende Person im Bezugsystem $(x,t) --> (x_1, t_1)$ und weil die Person steht werden ihre Koordinaten nach einiger Zeit $(x_1, t_1 + Delta t)$ betragen. Wir können also die folgende Gleichung benutzen:
+
+#figure(
+  $ t'_1 = (t_1-v/c^2 x_1)/sqrt(1-v^2/c^2) \ t'_1 
+   Delta t' = (t_1 + Delta t - v/c^2 x_1) / sqrt(1-v^2/c^2) \ Delta t' = (Delta t)/sqrt(1-v^2/c^2) -> Delta t' > Delta t$
+)
+
+=== Nicht-inertiale Systeme
+
+Einfach erklärt ist die Geschwindigkeit zwischen den beiden Bezugsystemen nicht mehr konstant. Für deren Berechnung brauchen wir die Lorentz-Invarianz:
+
+#figure(
+  $ x'^2-c^2 t'^2 = x^2-c^2 t^2 $
+  )
+
+Für eine bessere Übersicht, müssen wir folgende Variable definieren:
+
+#figure(
+  $ c^2t^2-x^2=s^2 $
+  )
+
+Weil wir derzeit sehr kleine Raum- und Zeit-Abstände betrachten (wir schauen uns auch nur den ersten Zeitpunkt an), kann man $x$ und $t$ mit $d x$ und $d t$ ersetzen 
+
+#figure(
+  $ d s^2 = c^2 d t^2 - d x^2  $
+  )
+
+Wenn man aber diese Aussage Integriert bekommt man sehr interessante Ergebnisse sowohl für Inertialsysteme als auch für Nicht-inertialsysteme.
+
+Wir werden uns damit später beschäftigen, aber dazu braucht man noch ein Paar andere Definitionen:
+
+#figure(
+  $ d tau = (d s)/c \ d s = c d tau \ d tau = sqrt(1 - v^2/c^2) d t$
+  )
+
+= Lagrange-Formalismus
+
+Wir haben einen Partikel der im Zeitraum sich bewegt (die Zeitdimension geht durch den Bildschirm)
+
+#figure(
+  image("images/lagrangian_1.png", width: 50%)
+)
+
+Wenn wir den Abstand zwischen $tau_1$ und $tau_2$ berechnen wollen, gibt es die Newton'sche Art und Weise:
+
+#figure(
+  $ tau_2 - tau_1 = integral^(tau_1)_tau_2 sqrt(1-v^2/c^2) space d t$
+  )
+
+aber auch die Lagrang'sche Art und Weise:
+
+#figure(
+  $ S = A = integral^(t_2)_t_1 L(arrow(x), dot(arrow(x)), t) space d t $
+  )
+
+Hamilton sagt uns, dass wir die Aktion ($A$ oder $S$) minimieren müssen damit wir die Flugbahn bekommen können. Wir machen das indem wir die Flugbahn ändern, aber nicht die Endpunkte.
+
+#figure(
+  $ delta S = integral^(t_2)_t_1 delta L (arrow(x), dot(arrow(x)), t) space d t = 0 $
+  )
+
+Durch diese Formulation kann man die Euler-Lagrange-Gleichung ableiten:
+
+#figure(
+  $ pdv(f,y,1) - d/(d x) pdv(f,y',1) = 0 $
+  )
+
+Grundlegend ist $T$ die kinetische Energie, $V$ die potenzielle Energie und $U$ das Potenzial wobei $U=-V$.
+
+== Lagrange - Spezielle Relativität
+Zuerst sollten wir uns an die Invariaz erinnern:
+#figure(
+  $ d s^2 = c^2 d t^2 - d x^2 $
+  )
+
+Zur erinnerung, diese Invarianz beschreibt das Intervall zwischen zwei Ereignissen im Zeit-Raum. Wenn $d s^2 < 0$ haben wir ein Raumhaftes Intervall. Heißt, dass sie sich nicht beeinflüssen können und sind nicht Zeitlich verbunden. Wenn $d s^2 > 0$ dann ist das Intervall Zeithaft und kann sich zwischen den Ereignissen bewegen.Wenn $d s^2 = 0$ dann kann nur eine Lichtgeschwindigkeit die zwei Ereignisse verbinden.
+
+Dazu definieren wir $d tau = (d s)/c$ noch einmal. (Invarianz dividiert durch die Lichtgeschwindigkeit). Dadurch, dass $|d arrow(x)|=V d t$ kann man durch einfache Algebra zu der folgenden Formel kommen:
+
+#figure(
+  $ d tau = d t times sqrt(1- v^2/c^2) $
+  )
+
+Jetzt wollen wir den Lagrangian erstellen.
+
+#figure(
+  $ A = integral^(t_0)_(t_1) L d t $
+  )
+
+Die eine Regel ist, dass alle Werte invariant sein müssen. Wir können zuerst $d t$ mit $d tau$ ersetzen. Den Lagrangian selbst zu ersetzen ist schwer. Man kann die Ruhemasse $m_0$ und $c$ nehmen. Weil $L = T - V$ und $T = 1/2 m_0 dot(x)^2$ können wir den folgenden Integral erstellen:
+
+#figure(
+  $ A = integral - m_0 c^2 d tau $
+  )
+
+Wir werden später sehen, wieso da ein minus ist und außerdem können wir $1/2$ weglassen weil es im grunde genommen nichts ausmacht. Fahren wir fort:
+
+#figure(
+  $ delta A = delta integral - m_0 c^2 sqrt(1-v^2/c^2) d t = delta integral L d t $
+  )
+
+Wir haben endlich unseren Lagrangian:
+
+#figure(
+  $ L = -m_0 c^2 sqrt(1-v^2/c^2) $
+  )
+
+=== Schwung in der SRT
+
+
