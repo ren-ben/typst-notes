@@ -387,12 +387,137 @@ Wir werden später sehen, wieso da ein minus ist und außerdem können wir $1/2$
   $ delta A = delta integral - m_0 c^2 sqrt(1-v^2/c^2) d t = delta integral L d t $
   )
 
-Wir haben endlich unseren Lagrangian:
+Endlich haben wir unseren Lagrangian:
 
 #figure(
   $ L = -m_0 c^2 sqrt(1-v^2/c^2) $
   )
 
 === Schwung in der SRT
+
+Um zu klären, womit wir arbeiten: Wir haben einen einzigen Partikel mit der Ruhemasse $m_0$.
+
+Der Schwung des Partikels ist $P_J = pdv(L,dot(x_J))$ welchen wir 3 Mal in jede Richtung ableiten können. Dazu sollte auch klar sein, dass $v^2 = dot(x^2 _1) + dot(x^2 _2) + dot(x^2 _3)$. Damit können wir lösen, was $P_J$ ist:
+
+#figure(
+  $ P_J = -m_0 c^2 1/(2 sqrt(1-v^2/c^2)) (-2 v)/c^2 pdv(V,dot(x_J)) $
+  )
+
+Zur Erinnerung: $pdv(V,dot(x_J)) = pdv(,dot(x_J)) sqrt(dot(x^2 _1) + dot(x^2 _2) + dot(x^2 _3))$ was gleich $1/(2 V) 2 dot(x)_J$ ist. Einfache Zusammensetzung (c^2 fällt weg, 2V fällt weg und 2 fällt weg) führt uns zum folgenden Ergebnis:
+
+#figure(
+  $ P_J = (m_0 dot(x)_J)/sqrt(1-v^2/c^2) $
+  )
+
+Manche Wissenschaftler definieren eine relative Masse ($m(v) = m_0/sqrt(1-v^2/c^2)$) und somit kann der Schwung in der SRT als eine klassische Definitio aufgeschrieben werden:
+
+#figure(
+  $ P_J = m dot(x)_J $
+  )
+
+ === E=mc2
+ $P_J$ ist sehr stark mit dem Hamiltonian verbunden. Weil $H= sum_J pdv(L, dot(x)_J) dot(x)_J - L$. Nach einer Substitution kommen wir zu der folgenden Formel:
+
+ #figure(
+   $ H = (m_0 sum_J dot(x)^2_J)/sqrt(1 - v^2/c^2) + m_0 c^2 sqrt(1-v^2/c^2) $
+   )
+
+Nach ein wenig Algebra kommen wir zum folgenden Ergebnis:
+
+#figure(
+  $ H = (m_0 c^2)/sqrt(1-v^2/c^2) $
+  )
+
+Dadurch kann der klassische Hamiltonian herausgezogen werden (mittels der Taylor-Expansion):
+
+#figure(
+  $ H approx m_0 c^2 + 1/2 m_0 V^2 -> H_(V=0) = m_0 c^2 $
+  )
+
+Dies bedeutet, das der Hamiltonian (Energie) während der Partikel sich nicht bewegt ist die Ruhemasse mal $c^2$. Dies ist die berühmte Formel von Einstein:
+
+#figure(
+  $ E=m c^2 $
+  )
+
+ = Generelle Relativitätstheorie
+
+ == Tensoren
+
+ === Invarianz als ein Tensor
+
+ Schauen wir uns die Invarianz noch einman an:
+
+ #figure(
+   $ d s^2 = c^2 d t^2 - d x^2 - d y^2 - d z^2 $
+   )
+
+Wenn man sich ein Koordinatensystem $(x^0, x^1, x^2, x^3)$ vorstellt, wo $x^0 = c t$, kann man die Invarianz flgendermaßen aufschreiben:
+
+#figure(
+  $ d s^2 = d x^0 - (d x^1)^2 - (d x^2)^2 - (d x^3)^2 $
+  )
+
+Wenn wir jetzt ein $4 x 4$ Matrix und ein Vektor mit den Koordinaten definieren
+
+#figure(
+  $ eta_(mu nu) = mat(
+    1, 0, 0, 0;
+    0, -1, 0, 0;
+    0, 0, -1, 0;
+    0, 0, 0, -1;
+    )
+    
+    d x^(mu) = vec(d x^0, d x^1, d x^2, d x^3)
+    $
+
+  )
+
+  können wir die Invarianz auf die folgende Art und Weise definieren:
+
+  #figure(
+    $ d s^2 = sum_mu sum_nu d x^mu d x^nu eta_(mu nu) $
+    )
+
+  Einstein hat aber gesagt, dass wenn wir wiederholende Indizes haben, können wir einfach sie summieren ohne den Summensymbolen:
+
+#figure(
+  $ d s^2 = d x^mu d x^nu eta_(mu nu) $
+  )
+
+=== Tensor-Transformationen
+
+Wenn man die Invarianz von $g_(mu nu)$ zu $g_(alpha beta)$ verwandeln möchte, muss man folgend vorgehen:
+
+#figure(
+  $ d s^2 = g_(mu nu) d x^(mu) d x^nu = g_(mu nu) pdv(x^mu, y^alpha) d y^alpha pdv(x^nu, y^beta) d y^beta \ =  g_(alpha beta) d y^alpha d y^beta $
+  )
+
+Das bedeutet, dass:
+
+#figure(
+  $ g_(alpha beta) = g_(mu nu) pdv(x^mu, y^alpha) pdv(x^nu, y^beta) $
+  )
+
+Sehr wichtig ist außerdem, dass kontravariante Tensor-Komponente sich mit dem Inversen des Jacobians transformieren lassen und kovariante Tensor-Komponente lassen sich mit dem Jacobian transformieren.
+
+Ein kontravariantes Komponent $v^mu$ wird folgendermaßen verwandelt:
+#figure(
+  $ x^(mu) = pdv(y^(mu), x^nu) x^nu $
+  )
+
+Und ein kovariantes Komponent $w_mu$ wird so verwandelt:
+#figure(
+  $ x'_mu = pdv(x^nu, y^mu) x_nu$
+  )
+
+Das würd folgendes im Fall von $F_(alpha beta)^(gamma delta)$ bedeuten:
+
+#figure(
+  $ F_(alpha beta)^(gamma delta) (y^0, y^1, y^2, y^3) \ = F_(alpha' beta')^(gamma' delta' ) (x^0, x^1, x^2, x^3) pdv(x^alpha', y^alpha) pdv(x^beta', y^beta) pdv(y^delta, x^delta') pdv(y^gamma, x^gamma') $
+  )
+
+Kontravariante Tensor-Komponente beschreiben den Absolutwert (Größe) und die Richtung im Raum. Beispielsweise Geschwindigkeit.
+Kovariante Tensor-Komponente beschreiben die geometrie im Raum, beispielsweise Gradiente oder Ableitungen.
 
 
