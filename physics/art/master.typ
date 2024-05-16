@@ -508,7 +508,7 @@ Ein kontravariantes Komponent $v^mu$ wird folgendermaßen verwandelt:
 
 Und ein kovariantes Komponent $w_mu$ wird so verwandelt:
 #figure(
-  $ x'_mu = pdv(x^nu, y^mu) x_nu$
+  $ x_mu = pdv(x^nu, y^mu) x_nu$
   )
 
 Das würd folgendes im Fall von $F_(alpha beta)^(gamma delta)$ bedeuten:
@@ -519,5 +519,14 @@ Das würd folgendes im Fall von $F_(alpha beta)^(gamma delta)$ bedeuten:
 
 Kontravariante Tensor-Komponente beschreiben den Absolutwert (Größe) und die Richtung im Raum. Beispielsweise Geschwindigkeit.
 Kovariante Tensor-Komponente beschreiben die geometrie im Raum, beispielsweise Gradiente oder Ableitungen.
+
+=== Lower-Rank Tensor zu Higher-Rank Tensor
+
+Wenn man zwei Lower-Rank Tensoren miteinander multipliziert bekommt man einen Higher-Rank Tensor:
+
+Sagen wir, dass wir den Tensor $V_mu^(1)$ und $V_nu^(1)$ wobei 1 der Index ist.
+#figure(
+  $ V_mu^(1) V_nu^(1) = mat(1;0;0;0) mat(1,0,0,0) = mat(1, 0, 0, 0 ; 0, 0, 0, 0 ; 0, 0, 0, 0) = V_(mu nu) $
+  )
 
 
