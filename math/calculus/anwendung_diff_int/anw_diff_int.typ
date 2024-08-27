@@ -261,7 +261,7 @@ Lösung:
 
 #image("imgs/745.png")
 
-Allgemein ist die Formel für das Volumen eines Körpers
+Allgemein lautet die Formel für das Volumen eines Körpers:
 
 $ V = integral_a^b A(x) d x $
 
@@ -298,11 +298,11 @@ $ V = pi integral_(-r)^r r^2-x^2 d x \ pi [r^2 x - 1/3 x^3 |_(-r)^r] \
 
 *1)*
 
-Funktionsgleichung (spezifisc $a$) findet man indem man den auf dem Graphen existierenden Punkt $P(5, 10)$ einsetzt $=> 10=a dot 5^2 => a=2/5$
+Funktionsgleichung (spezifisch $a$) findet man indem man den auf dem Graphen existierenden Punkt $P(5, 10)$ einsetzt $=> 10=a dot 5^2 => a=2/5$
 
 $ y = 2/5 dot x^2 $
 
-Wir kennen schon die formel $ pi integral_a^b [g(y)]^2 d y $. Dafür müssen wir die Funktionsgleichung auf $x^2$ umstellen (weil wir $y$ als die unabhängige Variable haben wollen)
+Wir kennen schon die Formel $ pi integral_a^b [g(y)]^2 d y $. Dafür müssen wir die Funktionsgleichung auf $x^2$ umstellen (weil wir $y$ als die unabhängige Variable haben wollen)
 
 $ x^2 = 5/2 y $
 
@@ -330,7 +330,7 @@ $ 250 = pi (5h^2)/4 => h = 7.98 c m approx 8 c m $
 
 ==== Wiederholung: Parzielle Integration
 
-Partielle Integration wird am eingachsten durch die DI-Methode durchgeführt. Beispielsweise wollen wir das folgende Integral lösen:
+Partielle Integration wird am einfachsten durch die DI-Methode durchgeführt. Beispielsweise wollen wir das folgende Integral lösen:
 
 $ integral x^2 sin(x) d x $
 
@@ -445,7 +445,8 @@ $ y' = 1/(cos^2(x)) \
 
 Das war ein interesannter Fall, weil hier die analytische Integration nicht funktionierte. Ich musste romberg einsetzen um die Lösung zu finden. Quadpack hat auch die Lösung gefunden, aber daneben auch andere, falsche. Dementsprechend ist romberg die beste Wahl in diesem Fall.
 
-Maxima-Befehl: _romberg(sqrt(1+(1/(cos(x)^2))^2), x, -%pi/4, %pi/4)_
+Maxima-Befehl: 
+1. _romberg(sqrt(1+(1/(cos(x)^2))^2), x, -%pi/4, %pi/4)_
 
 
 == Mittelwerte
