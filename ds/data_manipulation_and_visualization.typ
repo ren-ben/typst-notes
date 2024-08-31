@@ -238,7 +238,7 @@ Then there are other layers, such as "*Facets*" (multiple plots), "*Statistics*"
 
 #show link: underline
 
-There exists a cheat sheet for `ggplot2` that explains the major aspects in around 2 pages. It can be found [here](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf)
+There exists a cheat sheet for `ggplot2` that explains the major aspects in around 2 pages. It can be found #link("https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf")[here].
 
 == Histograms
 
@@ -397,3 +397,116 @@ You can set a theme by either setting it globaly using the `theme_set()` functio
   )
 
 To get even more themes, install the `ggthemes` library.
+
+#pagebreak()
+
+== Data Visualization Assignment Solution
+
+#code(
+  lang: "",
+  ```r
+    df <- fread("/home/ren/coding/r/R-Course-HTML-Notes/R-Course-HTML-Notes/R-for-Data-Science-and-Machine-Learning/Training Exercises/Capstone and Data Viz Projects/Data Visualization Project/Economist_Assignment_Data.csv", drop=1)
+head(df)
+
+  pl <- ggplot(df, aes(x=CPI, y=HDI)) + geom_point(shape=1, size = 3, aes(color=Region))
+
+  pl2 <- pl + geom_smooth(aes(group=1), method = lm, formula = y ~ log(x), se = FALSE, color="red")
+
+  pointsToLabel <- c("Russia", "Venezuela", "Iraq", "Myanmar", "Sudan",
+                     "Afghanistan", "Congo", "Greece", "Argentina", "Brazil",
+                     "India", "Italy", "China", "South Africa", "Spane",
+                     "Botswana", "Cape Verde", "Bhutan", "Rwanda", "France",
+                     "United States", "Germany", "Britain", "Barbados", "Norway", "Japan",
+                     "New Zealand", "Singapore")
+
+  pl3 <- pl2 + geom_text(aes(label = Country), color = "gray20", 
+                         data = subset(df, Country %in% pointsToLabel),check_overlap = TRUE)
+
+  print(pl3 + theme_bw() + scale_x_continuous(name = "Corruption Perception Index (CPI)", limits = c(1, 10), breaks = 1:10 ) + scale_y_continuous(name = "Human Development Index, 2011 (1=Best)", limits = c(0, 1), breaks = seq(0, 1, 0.1)) + ggtitle("Corruption and Human development"))
+  ```
+  )
+
+== Interactive Visualization with Plotly
+
+Plotly allows for the interactive visualization of data in multiple languages like R, Python or Matlab. It's entirely open source, free and self-hosted.
+
+A recent addition to their package is the ability to convert `ggplot2` plots into interactive plotly plots directly inside of the R environment.
+
+To get started, install `plotly` activate it.
+
+#code(
+  lang: "",
+  ```r
+    pl <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
+
+    gpl <- ggplotly(pl) # now you can zoom in and get more informationwithin the plot.
+  ```
+  )
+
+Their ggplot2 plotly documentation has alot of great tutorials on how to create various types of plots that can be accessed #link("https://plot.ly/ggplot2/")[here].
+
+#pagebreak()
+
+== Moneyball Assignment Solution
+
+#code(
+  lang: "",
+  ```r
+    
+  batting <- read.csv('/home/ren/coding/r/R-Course-HTML-Notes/R-Course-HTML-Notes/R-for-Data-Science-and-Machine-Learning/Training Exercises/Capstone and Data Viz Projects/Capstone Project/Batting.csv')
+
+  head(batting)
+
+  str(batting)
+
+  batting$BA <- batting$H / batting$AB
+
+  tail(batting$BA, 5)
+
+  batting$OBP <- (batting$H + batting$BB + batting$HBP) / (batting$AB + batting$BB + batting$HBP + batting$SF)
+
+  batting$SLG <- ((batting$H - batting$X2B - batting$X3B - batting$HR) + (2 * batting$X2B) + (3 * batting$X3B) + (4 * batting$HR)) / batting$AB
+
+  str(batting)
+
+  sal <- read.csv("/home/ren/coding/r/R-Course-HTML-Notes/R-Course-HTML-Notes/R-for-Data-Science-and-Machine-Learning/Training Exercises/Capstone and Data Viz Projects/Capstone Project/Salaries.csv")
+
+  summary(batting)
+  batting <- subset(batting, yearID >= 1985)
+  summary(batting)
+
+  merged <- merge(batting, sal, by = c("playerID", "yearID"))
+
+  summary(merged)
+
+# option 1
+  lost_players <- filter(merged, playerID == "giambja01" | playerID == "damonjo01" | playerID == "saenzol01")
+
+# option 2
+  lost_players <- subset(merged, playerID %in% c("giambja01", "damonjo01", "saenzol01"))
+
+  distinct(lost_players, playerID)
+  count(lost_players, playerID)
+
+  lost_players <- subset(lost_players, yearID == 2001)
+  lost_players <- select(lost_players, H, X2B, X3B, HR, OBP, SLG, BA, AB)
+
+  print(lost_players)
+
+  sum(lost_players$AB) # 1469
+  mean(lost_players$OBP) # 0.363
+
+  replacement_players <- filter(merged, yearID == 2001, salary <= 5000000)
+  replacement_players
+
+  pl <- ggplot(replacement_players, aes(x = AB, y = OBP, name = playerID, salary = salary))
+  pl <- pl + geom_point()
+
+  ply <- ggplotly(pl, tooltip = c("x", "y", "name", "salary"))
+  ply
+
+  # I'd choose "berkmla01", "heltoto01" and "gonzalu01" as replacements for the lost players
+  ```
+  )
+
+
